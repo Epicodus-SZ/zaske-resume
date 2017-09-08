@@ -1,9 +1,12 @@
 package com.zaske.zaskeresume;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -87,6 +90,24 @@ public class MainActivity extends AppCompatActivity
             startActivity(mExamples);
         } else if (id == R.id.nav_gallery) {
 
+//            Fragment fragment = NewFragment.newInstance("steve","zaske");
+//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//            transaction.replace(R.id.fragmentView, fragment).commit();
+
+            // Create a new fragment and specify the planet to show based on position
+            Fragment fragment = new newFrag();
+//            Bundle args = new Bundle();
+//            args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
+//            fragment.setArguments(args);
+
+            // Insert the fragment by replacing any existing fragment
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragmentView, fragment)
+                    .commit();
+
+
+
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
@@ -101,4 +122,5 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
